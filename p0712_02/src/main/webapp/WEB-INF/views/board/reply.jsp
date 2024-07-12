@@ -15,13 +15,15 @@
 </head>
 <body>
 <section>
-    <h1>게시글수정</h1>
+    <h1>게시글 답글달기</h1>
     <hr>
 
-    <form action="/board/doUpdate" name="modify" method="post" enctype="multipart/form-data">
+    <form action="/board/doReply" name="reply" method="post" enctype="multipart/form-data">
       <table>
-      <input type="hidden" name="bno" value="${boardDto.bno}">
-      <input type="hidden" name="bfile" value="${boardDto.bfile}">
+      <input type="hidden" name="bno" value="${boardDto.bno }">
+      <input type="hidden" name="bgroup" value="${boardDto.bgroup }">
+      <input type="hidden" name="bstep" value="${boardDto.bstep }">
+      <input type="hidden" name="bindent" value="${boardDto.bindent }">
         <colgroup>
           <col width="15%">
           <col width="85%">
@@ -29,19 +31,24 @@
         <tr>
           <th>작성자</th>
           <td>
-            <input type="text" name="id" value="${boardDto.id}" readonly>
+            <input type="text" name="id">
           </td>
         </tr>
         <tr>
           <th>제목</th>
           <td>
-            <input type="text" name="btitle" value="${boardDto.btitle }">
+            <input type="text" name="btitle" value="[답변] ${boardDto.btitle }">
           </td>
         </tr>
         <tr>
           <th>내용</th>
           <td>
-            <textarea name="bcontent" cols="50" rows="10">${boardDto.bcontent}</textarea>
+<textarea name="bcontent" cols="50" rows="10">
+
+---------------------------
+[답글]
+${boardDto.bcontent }
+</textarea>
           </td>
         </tr>
         <tr>
@@ -50,20 +57,11 @@
             <input type="file" name="files" id="file">
           </td>
         </tr>
-        <tr>
-          <th>파일이름</th>
-          <c:if test="${boardDto.bfile != null}">
-          	<td>${boardDto.bfile}</td>
-          </c:if>
-          <c:if test="${boardDto.bfile == null}">
-          	<td>첨부파일 없음</td>
-          </c:if>
-        </tr>
       </table>
       <hr>
       <div class="button-wrapper">
-        <button type="submit" class="write">수정완료</button>
-        <button type="button" class="cancel" onclick="javascript:location.href='/board/view?bno=${boardDto.bno}'">취소</button>
+        <button type="submit" class="write">답변완료</button>
+        <button type="button" class="cancel" onclick="javascript:location.href='list.do'">취소</button>
       </div>
     </form>
 
