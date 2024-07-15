@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.dao.EDDao">
+  <!-- 사원+부서 조인 리스트 -->
+  <select id="selectAll" resultMap="edDtoMap">
+      select * from employees a, departments b
+	  where a.department_id = b.department_id
+  </select>
+  
+  <!-- EmpDepDto 선언 -->
+  <resultMap id="edDtoMap" type="com.java.dto.EDDto">
+  	<collection property="empDto" resultMap="empDtoMap" />
+  	<collection property="departDto" resultMap="departDtoMap" />
+  </resultMap>
+  
+  <!-- empDto선언 -->
+  <resultMap id="empDtoMap" type="com.java.dto.EmpDto" >
+	  <result column="employee_id" property="employee_id" />
+	  <result column="emp_name" property="emp_name" />
+	  <result column="email" property="email" />
+	  <result column="phone_number" property="phone_number" />
+	  <result column="hire_date" property="hire_date" />
+	  <result column="salary" property="salary" />
+	  <result column="manager_id" property="manager_id" />
+	  <result column="commission_pct" property="commission_pct" />
+	  <result column="retire_date" property="retire_date" />
+	  <result column="department_id" property="department_id" />
+	  <result column="job_id" property="job_id" />
+	  <result column="create_date" property="create_date" />
+	  <result column="update_date" property="update_date" />
+  </resultMap>
+  
+  
+  <!-- departDto 선언 -->
+  <resultMap id="departDtoMap" type="com.java.dto.DepartDto" >
+	  <result column="department_id" property="department_id" />
+	  <result column="department_name" property="department_name" />
+	  <result column="parent_id" property="parent_id" />
+	  <result column="manager_id" property="manager_id" />
+	  <result column="create_date" property="create_date" />
+	  <result column="update_date" property="update_date" />
+  </resultMap>
+  
+  
+  
+</mapper>
