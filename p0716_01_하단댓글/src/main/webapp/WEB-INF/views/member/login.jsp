@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
 <script type="text/javascript" src="../js/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="../js/top_navi.js"></script>
 <script type="text/javascript" src="../js/left_navi.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
@@ -18,6 +24,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<style>a{cursor: pointer;}</style>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -206,6 +213,26 @@ $(document).ready(function() {
 				</ul>			
 			</div><script type="text/javascript">initSubmenu(1,0);</script>
 
+            <script>
+              $(function(){
+            	 $(".sbtn").click(function(){
+            		//alert("로그인 진행"); 
+            		if($("#id").val()==""){
+            			alert("아이디를 입력하셔야 합니다.");
+            			$("#id").focus();
+            			return false;
+            		}
+            		if($("#pw").val()==""){
+            			alert("패스워드를 입력하셔야 합니다.");
+            			$("#pw").focus();
+            			return false;
+            		}
+            		//MemberController 전송
+            		loginFrm.submit();
+            		
+            	 }); 
+              });
+            </script>
 
 			<!-- contents -->
 			<div id="contents">
@@ -214,13 +241,16 @@ $(document).ready(function() {
 					<h3>회원 로그인</h3>
 					<div class="informbox">
 						<div class="inform">
+							<form action="/member/login" name="loginFrm" method="post">
 							<ul>
-								<li><input type="text" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password" class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="text" name="id" id="id" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="password" name="pw" id="pw" class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 							</ul>
 
-							<div class="btn"><a href="#" class="sbtn">로그인</a></div>
+							<div class="btn"><a class="sbtn">로그인</a></div>
+							
 							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
+							</form>
 
 							<div class="point">
 								<p>아이디와 비밀번호를 잊으셨나요?</p>
