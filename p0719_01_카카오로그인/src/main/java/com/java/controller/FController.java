@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.net.HttpURLConnection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,9 +19,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.dto.KakaoDto;
 import com.java.dto.OAuthTokenDto;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class FController {
 
+	@Autowired HttpSession session;
+	
+	
 	@GetMapping({"/","/index"})
 	public String index() {
 		return "index";
@@ -33,7 +39,7 @@ public class FController {
 	
 	
 	@RequestMapping("/kakao/oauth")
-	@ResponseBody
+//	@ResponseBody
 	public String oauth(String code) {
 		
 		// [ 카카오 로그인 ]
@@ -95,13 +101,13 @@ public class FController {
 		RestTemplate rt2 = new RestTemplate();
 		// header오브젝트 생성
 		HttpHeaders headers2 = new HttpHeaders();
-		headers.add("Authorization", "Bearer "+oAuthTokenDto.getAccess_token());
-		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		headers2.add("Authorization", "Bearer "+oAuthTokenDto.getAccess_token());
+		headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		// 파라미터 값은 필요없음
 		//header오브젝트, MultiValueMap를 1개 오브젝트로 묶음
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest2 = 
-				new HttpEntity<>(headers);
+				new HttpEntity<>(headers2);
 		
 		//사용자 정보 Http 요청
 		String oauthUrl2 = "https://kapi.kakao.com/v2/user/me";
@@ -122,9 +128,16 @@ public class FController {
 		} catch (Exception e) {e.printStackTrace();	} 
 		
 		System.out.println("kakaoDto 개인정보 닉네임 : "+ kakaoDto.getProperties().getNickname());
+		System.out.println("kakaoDto id : "+ kakaoDto.getId());
+		System.out.println("kakaoDto connected_at : "+ kakaoDto.getConnected_at());
 		
+		//로그인 섹션 생성
+		session.setAttribute("kakaoSessionId", kakaoDto.getId());
+		session.setAttribute("kakaoSessionNicName", kakaoDto.getProperties().getNickname());
 		
-		return "카카오 개인정보 응답 : "+response2;
+		//@responseBody 삭제후 
+		return "redirect:/";
+//		return "카카오 개인정보 응답 : "+response2;
 		
 		
 	}
