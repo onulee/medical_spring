@@ -3,6 +3,7 @@ package com.java.controller;
 import java.net.HttpURLConnection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,9 +27,12 @@ public class FController {
 
 	@Autowired HttpSession session;
 	
+	@Value("${kakao.api_key}")
+	private String kakaoApiKey;
 	
 	@GetMapping({"/","/main"})
 	public String index() {
+		System.out.println("카카오 kakaoApiKey : "+kakaoApiKey);
 		return "login";
 	}
 	
@@ -44,8 +48,6 @@ public class FController {
 		
 		// [ 카카오 로그인 ]
 		//#### 1차 : code ####
-		
-		
 		System.out.println("oauth code : "+code);
 		String grant_type = "authorization_code";
 		String client_id = "5cd9d50739c717c1e72916e86302bc30";
@@ -56,7 +58,7 @@ public class FController {
 //	     conn.setRequestMethod("GET");
 //	     conn.setRequestProperty("Content-type", "application/json");
 		
-		// post방식으로 전송 - daum 토큰키를 요청함.
+		// http post방식으로 전송 - daum 토큰키를 요청함.
 		RestTemplate rt = new RestTemplate();
 		// header오브젝트 생성
 		HttpHeaders headers = new HttpHeaders();
