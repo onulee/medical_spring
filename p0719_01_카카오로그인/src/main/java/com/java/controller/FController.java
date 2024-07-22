@@ -27,9 +27,9 @@ public class FController {
 	@Autowired HttpSession session;
 	
 	
-	@GetMapping({"/","/index"})
+	@GetMapping({"/","/main"})
 	public String index() {
-		return "index";
+		return "login";
 	}
 	
 	@GetMapping("login")

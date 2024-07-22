@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/login.css">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -77,7 +78,7 @@
         <span>아이디 찾기</span> <span class="separator">|</span> <span>비밀번호 찾기</span>
       </div>
 
-      <button type="submit">로그인</button>
+      <button type="submit">로그인11<i class="fa-solid fa-arrow-right"></i></button>
       <br><br>
       <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=5cd9d50739c717c1e72916e86302bc30&redirect_uri=http://localhost:8181/kakao/oauth">
         <img src="/images/kakao_login_medium_narrow.png">
