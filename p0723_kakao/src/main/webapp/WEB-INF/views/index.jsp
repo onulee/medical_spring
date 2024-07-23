@@ -27,7 +27,9 @@
 	  <c:if test="${session_id != null }">
 		  <h2>${session_nickName }님 환영합니다.</h2>
 		  <div></div>
-		  <a href="/kakao/logout">로그아웃</a>
+		  <a href="https://kauth.kakao.com/oauth/logout?client_id=5cd9d50739c717c1e72916e86302bc30&logout_redirect_uri=http://localhost:8181/kakao/logout">
+		    로그아웃
+		  </a>
 	  </c:if>
 	
 	
