@@ -31,7 +31,6 @@ public class FController {
 	
 	
 	
-	
 	@Value("${kakao.admin_id}")
 	private String id;
 
@@ -39,6 +38,11 @@ public class FController {
 	public String index() {
 		System.out.println("application id : "+id);
 		return "index";
+	}
+	@RequestMapping("/map")
+	public String map() {
+		System.out.println("map");
+		return "map";
 	}
 	
 	//로그아웃
