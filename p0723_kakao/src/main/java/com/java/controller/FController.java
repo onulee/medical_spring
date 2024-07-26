@@ -29,20 +29,27 @@ public class FController {
 	//토큰키 객체
 	OAuthTokenDto oAuthTokenDto = null;
 	
-	
-	
-	@Value("${kakao.admin_id}")
-	private String id;
+	@Value("${kakao.apiKey}")
+	private String apiKey;
 
 	@RequestMapping({"/","/index","/main"})
 	public String index() {
-		System.out.println("application id : "+id);
+		System.out.println("application id : "+apiKey);
 		return "index";
 	}
+	
+	//카카오맵 마커 1개생성
 	@RequestMapping("/map")
 	public String map() {
 		System.out.println("map");
 		return "map";
+	}
+	
+	//카카오맵 마커 여러개 생성
+	@RequestMapping("/map2")
+	public String map2() {
+		System.out.println("map2");
+		return "map2";
 	}
 	
 	//로그아웃

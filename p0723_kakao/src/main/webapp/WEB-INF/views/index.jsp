@@ -8,10 +8,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>메인페이지</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
 	  <h1>메인페이지</h1>
 	  <c:if test="${session_id == null }">
+		  <h2><a href="/map">카카오맵 1개</a></h2>
+		  <h2><a href="/map2">카카오맵 여러개</a></h2>
 		  <h2>로그인전 단계입니다. 로그인을 해주세요.</h2>
 		  <form>
 		    <label>아이디</label>
