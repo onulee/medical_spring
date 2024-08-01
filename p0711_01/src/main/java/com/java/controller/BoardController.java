@@ -22,6 +22,7 @@ import com.java.service.BoardServiceImpl;
 @Controller
 public class BoardController {
 
+	
 //	BoardServiceImpl boardServiceImpl = new BoardServiceImpl(); //객체선언
 //	BoardService boardService = new BoardServiceImpl();  //다형성
 	
