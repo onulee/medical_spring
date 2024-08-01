@@ -12,6 +12,20 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/write.css">
+  <script>
+	  function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview').src = "";
+		  }
+		}
+
+  </script>
 </head>
 <body>
 <section>
@@ -45,7 +59,13 @@
         <tr>
           <th>이미지 표시</th>
           <td>
-            <input type="file" name="files" id="file">
+            <input type="file" name="files" id="file" onchange="readURL(this);">
+          </td>
+        </tr>
+        <tr>
+          <th>업로드</th>
+          <td style="border:1px solid black;">
+	         <img id="preview" style="width:100px;">
           </td>
         </tr>
       </table>
