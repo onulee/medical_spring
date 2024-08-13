@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
+**/src/main/**/TestController.java
 **/src/main/**/pinfo.properties
 .apt_generated
 .classpath
