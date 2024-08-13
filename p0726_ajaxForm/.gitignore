@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
+**/src/main/**/pinfo.properties
 .apt_generated
 .classpath
 .factorypath
